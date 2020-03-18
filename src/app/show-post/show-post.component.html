@@ -1,0 +1,29 @@
+
+<mat-card class="card" *ngFor="let post of posts">
+  <mat-card-title>{{ post.title }}</mat-card-title>
+  <mat-card-content>{{ post._id }}</mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button>Explore</button>
+    <button mat-stroked-button>Edit</button>
+    <button mat-raised-button>Delete</button>
+  </mat-card-actions>
+  <mat-card-footer>{{ post.by }}</mat-card-footer>
+</mat-card>
+
+{{quotes}}
+<ul class="quotes" *ngFor="let quotes of quotes" >
+    <li class="quote">
+      <span>{{quotes.name}}</span>
+      <span>{{quotes.password}}</span>
+    </li>
+  </ul>
+  <mat-card class="card" *ngFor="let quotes of quotes">
+    <mat-card-title>{{ quotes.name }}</mat-card-title>
+    <mat-card-content>{{ quotes.password }}</mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button>Explore</button>
+      <button mat-stroked-button>Edit</button>
+      <button mat-raised-button>Delete</button>
+    </mat-card-actions>
+    <!-- <mat-card-footer>--Admin</mat-card-footer> -->
+  </mat-card>
