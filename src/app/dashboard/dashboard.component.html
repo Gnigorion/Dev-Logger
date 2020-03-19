@@ -1,0 +1,27 @@
+
+<mat-toolbar class="toolbar" color="primary">
+  <mat-toolbar-row>
+    <span>DevLogger</span>
+    <span class="spacer"></span>
+    <button mat-fab color="primary">Edit</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container class="container">
+  <mat-sidenav mode="side" opened class="side">
+    <ul mat-tab-nav-bar>
+      <li>
+        <a mat-tab-link
+           *ngFor="let link of navLinks"
+           [routerLink]="link.path"
+           routerLinkActive #rla="routerLinkActive">
+          {{link.label}}
+        </a>
+      </li>
+    </ul>
+  </mat-sidenav>
+  <mat-sidenav-content class="main">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
