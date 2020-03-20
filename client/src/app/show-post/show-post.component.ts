@@ -1,27 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { EnrollService } from '../enroll.service';
+import { PostsService } from '../post.service';
+import { Post } from '../post.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-show-post',
   templateUrl: './show-post.component.html',
   styleUrls: ['./show-post.component.css']
 })
-export class ShowPostComponent implements OnInit {
-  quotes: any = {};
-  posts: any;
-  // posts = [
-  //   {title: 'Sample Post - 1', content: 'Hello.. '},
-  //   {title: 'Sample Post - 2', content: 'Hi..'}
-  // ];
+export class ShowPostComponent implements OnInit, OnDestroy {
 
+  posts: Post[] = [];
+  private postsSub: Subscription;
 
+  constructor(private enrollService: EnrollService, public postService: PostsService) { }
 
-  // quotes = {
-  //   name: this.quotes.name,
-  //   password: this.quotes.password
-  // }
-
-  constructor(private enrollService: EnrollService) { }
+  onDelete(postId: string) {
+    this.postService.deletePost(postId);
+  }
 
   ngOnInit() {
     // this.enrollService.getUsers()
@@ -36,10 +33,19 @@ export class ShowPostComponent implements OnInit {
     //     // console.log(this.quotes);
     //   });
 
-    this.enrollService.getPosts().subscribe(data => {
-      this.posts = data;
-    });
+    // this.enrollService.getPosts().subscribe(data => {
+    //   this.posts = data;
+    // });
 
+    this.postService.getPosts();
+    this.postsSub = this.postService.getPostUpdateListener()
+      .subscribe((posts: Post[]) => {
+        this.posts = posts;
+      });
+  }
+
+  ngOnDestroy() {
+    this.postsSub.unsubscribe();
   }
 
 }

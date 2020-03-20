@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   public currentUser;
   constructor() {
-    this.currentUser = sessionStorage.getItem('currentUser')? JSON.parse(sessionStorage.getItem('currentUser')) : '';
+    this.currentUser = sessionStorage.getItem('currentUser') ? JSON.parse(sessionStorage.getItem('currentUser')) : '';
    }
 
   ngOnInit() {

@@ -1,27 +1,25 @@
 <p>Show posts!! works</p>
-<mat-card class="card" *ngFor="let post of posts">
+<!-- <mat-card class="card" *ngFor="let post of posts">
   <mat-card-title>{{ post.title }}</mat-card-title>
-  <mat-card-content>{{ post.description }}</mat-card-content>
+  <mat-card-content>{{ post.content }}</mat-card-content>
   <mat-card-actions>
     <button mat-raised-button>Explore</button>
     <button mat-stroked-button>Edit</button>
     <button mat-raised-button>Delete</button>
   </mat-card-actions>
-  <mat-card-footer>{{ post.by }}</mat-card-footer>
-</mat-card>
-<ul class="quotes" *ngFor="let quotes of quotes" >
-    <li class="quote">
-      <span>{{quotes.name}}</span>
-      <span>{{quotes.password}}</span>
-    </li>
-  </ul>
-  <mat-card class="card" *ngFor="let quotes of quotes">
-    <mat-card-title>{{ quotes.name }}</mat-card-title>
-    <mat-card-content>{{ quotes.password }}</mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button>Explore</button>
-      <button mat-stroked-button>Edit</button>
-      <button mat-raised-button>Delete</button>
-    </mat-card-actions>
-    <!-- <mat-card-footer>--Admin</mat-card-footer> -->
-  </mat-card>
+  <!-- <mat-card-footer>{{ post.by }}</mat-card-footer> -->
+<!-- </mat-card> --> -->
+
+<mat-accordion multi="true" *ngIf="posts.length > 0" >
+  <mat-expansion-panel *ngFor ="let post of posts">
+    <mat-expansion-panel-header>
+    {{ post.title }}
+    </mat-expansion-panel-header>
+    <p>{{ post.content }}</p>
+    <mat-action-row>
+      <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
+      <button mat-button color="warn" (click)=onDelete(post.id)>DELETE</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0 ">No posts Added Yet</p>
