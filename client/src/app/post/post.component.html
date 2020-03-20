@@ -1,0 +1,45 @@
+<!-- <ul class="quotes" *ngFor="let u of users" >
+  <li class="quote">
+    <span>{{u.name}}</span>
+    <span>{{u.password}}</span>
+  </li>
+</ul>
+<h2>post works!</h2> -->
+
+<mat-card class="mat-card">
+  <form (submit)="onSavePost(postForm)" #postForm="ngForm"> <!-- It gives acces to this object form object that angular manages for us -->
+    <mat-form-field>
+      <mat-label>Project</mat-label>
+      <input
+      matInput
+      type="text"
+      placeholder="Project ID"
+      name="title"
+      [ngModel]="post?.title"
+      required
+      #title="ngModel"
+      >
+      <mat-error *ngIf="title.invalid">Please enter a Post Title</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea
+      rows="6"
+      matInput
+      placeholder="Type your description here"
+      name="content"
+      [ngModel]="post?.content"
+      required
+      #content="ngModel">
+      <mat-error *ngIf="content.invalid">Content Missing</mat-error>
+    </textarea>
+    </mat-form-field>
+    <button
+    mat-raised-button
+    color=accent
+    type="submit">Save Post</button>
+  </form>
+</mat-card>
+
+
+

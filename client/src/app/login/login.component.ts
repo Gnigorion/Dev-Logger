@@ -14,12 +14,12 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService : AuthenticationService,
+    private authenticationService: AuthenticationService,
     private toastr: ToastrService
   ) { }
 
@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
      this.authenticationService.login(this.fval.email.value, this.fval.password.value)
         .subscribe(
             data => {
-              this.router.navigate(['/']);
+              this.router.navigate(['/dashboard']);
             },
             error => {
               this.toastr.error(error.error.message, 'Error');

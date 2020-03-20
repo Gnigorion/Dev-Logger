@@ -14,6 +14,7 @@ const mongoose = require('./Utilities/mongooseConfig')();
 
 const authRoute = require('./Routes/auth');
 const config = require("./Utilities/config").config;
+const routes = require('./routes')
 
 app.use(express.static(path.join(__dirname, '/LoginRegDevlogger')));
 
@@ -32,6 +33,7 @@ app.use((err, req, res, next) => {
 });
 
 app.use('/auth', authRoute);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
