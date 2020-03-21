@@ -17,8 +17,6 @@ router.post("/register", authService.register);
 router.post("/login", authService.login);
 
 
-
-
 // /* Get Post */
 // router.get('/dashboard/project',function(req,res,next){
 
@@ -39,16 +37,16 @@ router.post("/login", authService.login);
 //     });
 
 /* Get Post Data */
-// router.get('/dashboard',function(req,res,next){
-//     if (err) throw err;
-//     db.collection("posts").find().toArray(function(err, result) {
-//       console.log(result);
-//       console.log(result[0])
-//       console.log(result[0].title)
-//       res.send(result)
-//     });
-//     db.close();
-//   });
+router.get('/dashboard',function(req,res,next){
+    if (err) throw err;
+    db.collection("posts").find().toArray(function(err, result) {
+      console.log(result);
+      console.log(result[0])
+      console.log(result[0].title)
+      res.send(result)
+    });
+    db.close();
+  });
 
 
 // /* Project Get Data */

@@ -1,4 +1,37 @@
-<!-- <div class="style">
+ <!-- //<div class="login-wrapper" Layout="row" LayoutAlign="center center"> -->
+  <!-- <h3>User Login</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+      <div class="form-group">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="EmailId">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password">
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+    </form>
+  </mat-card>
+
+</div>
+<div class="form-group">
+  <button [disabled]="loading" class="btn btn-primary">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Login
+  </button>
+  <a routerLink="/register" class="btn btn-link">Register</a>
+</div>
+</form>
+ -->
+
 <h3>User Login</h3>
 <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
     <div class="form-group">
@@ -24,33 +57,3 @@
         <a routerLink="/register" class="btn btn-link">Register</a>
     </div>
 </form>
-</div> -->
-
-<div class="style">
-  <h3>User Login</h3>
-  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
-      <div class="form-group">
-          <label for="email">Email</label>
-          <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" placeholder="Enter email here"/>
-          <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
-              <div *ngIf="fval.email.errors.required">Email is required</div>
-              <div *ngIf="fval.email.errors.email">Enter valid email address</div>
-          </div>
-      </div>
-      <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" placeholder="Enter password here" />
-          <div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
-              <div *ngIf="fval.password.errors.required">Password is required</div>
-          </div>
-      </div>
-      <div class="form-group">
-          <button [disabled]="loading" class="btn btn-primary">
-              <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-              Login
-          </button>
-          <a routerLink="/register" class="btn btn-link">Register</a>
-      </div>
-  </form>
-  </div>
-

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularMaterialModule } from './ angular-material.module';
 
 import { ToastrModule } from 'ngx-toastr';
 // services
@@ -10,6 +11,7 @@ import { InterceptorService } from './_services/interceptor.service';
 import { UserService } from './_services/user.service';
 import { EnrollService } from './enroll.service';
 import { PostsService } from './post.service';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -66,6 +68,7 @@ import {
     MatCheckboxModule,
     MatIconModule,
     MatFormFieldModule,
+    AngularMaterialModule,
   MatInputModule
   ],
   providers: [UserService, EnrollService, PostsService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }], //

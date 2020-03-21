@@ -16,9 +16,16 @@ import { ShowPostComponent } from './show-post/show-post.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent},
-  {path: 'dashboard', component: DashboardComponent, children: [
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
+  },
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard],
+  children: [
     {path: '', component: ShowPostComponent},
     {path: 'post', component: PostComponent, pathMatch: 'full'},
     {path: 'edit/:postId', component: PostComponent, pathMatch: 'full'},

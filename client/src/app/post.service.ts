@@ -10,7 +10,6 @@ export class PostsService {
   private postUpdated = new Subject<Post[]>();
   constructor(private http: HttpClient) { }
 
-
   getPosts() {
     this.http.get<{ message: string, posts: any }>('dashboard')
       .pipe(map((postData) => {
@@ -30,9 +29,9 @@ export class PostsService {
   getPostUpdateListener() {
     return this.postUpdated.asObservable();
   }
-  getPost(id: string) {
-    return this.http.get<{_id: string, title: string, content: string}>('dashboard/post/' + id);
-  }
+getPost(id: string) {
+  return this.http.get<{_id: string, title: string, content: string}>('dashboard/post/' + id);
+}
 
   addPost(title: string, content: string) {
     const post: Post = { id: null, title: title, content: content };
