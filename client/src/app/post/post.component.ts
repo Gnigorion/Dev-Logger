@@ -15,14 +15,14 @@ export class PostComponent implements OnInit {
   enteredTitle = '';
   enteredContent = '';
   post: Post;
-  private mode = 'create';
+  private mode = 'post';
   private postId: string;
 
   onSavePost(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    if (this.mode === 'create') {
+    if (this.mode === 'post') {
       this.postService.addPost(form.value.title, form.value.content);
     } else {
       this.postService.updatePost(
@@ -37,22 +37,22 @@ export class PostComponent implements OnInit {
   constructor(private enrollService: EnrollService, public postService: PostsService, public route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.enrollService.getUsers()
-    .subscribe(data => {
+    // this.enrollService.getUsers()
+    // .subscribe(data => {
 
-        this.users = data;
-        console.log(this.users);
-      });
-
+    //     this.users = data;
+    //     console.log(this.users);
+    //   });
     this.route.paramMap.subscribe((paramsMap: ParamMap) => {
         if (paramsMap.has('postId')) {
           this.mode = 'edit';
           this.postId = paramsMap.get('postId');
           this.postService.getPost(this.postId).subscribe(postData => {
             this.post = { id: postData._id, title: postData.title, content: postData.content};
+            console.log(postData);
           });
         } else {
-          this.mode = 'create';
+          this.mode = 'post';
           this.postId = null;
         }
       });

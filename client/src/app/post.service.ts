@@ -47,11 +47,12 @@ getPost(id: string) {
   updatePost(id: string, title: string, content: string) {
     const post: Post = { id: id, title: title, content: content };
     this.http
-    .put('dashboard/edit' + id, post)
+    .put('dashboard/edit/' + id, post)
     .subscribe(response => {
       const updatedPosts = [...this.posts];
       const oldPostIndex = updatedPosts.findIndex(p => p.id === post.id);
       updatedPosts[oldPostIndex] = post;
+      console.log(response);
       this.posts  = updatedPosts;
       this.postUpdated.next([...this.posts]);
     });

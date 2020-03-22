@@ -40,9 +40,6 @@ router.get("",(req, res, next) => {
       message: 'Posts fetch Successfully',
       posts: documents
   })
-
-
-
   });
 });
 
