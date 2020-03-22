@@ -30,7 +30,7 @@ export class PostsService {
     return this.postUpdated.asObservable();
   }
 getPost(id: string) {
-  return this.http.get<{_id: string, title: string, content: string}>('dashboard/post/' + id);
+  return this.http.get<{_id: string, title: string, content: string}>('dashboard/' + id);
 }
 
   addPost(title: string, content: string) {

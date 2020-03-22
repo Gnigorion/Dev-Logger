@@ -19,7 +19,7 @@ router.post("/post",(req, res, next) => {
 
 
 
-router.put("/post/:id", (req, res, next) => {
+router.put("/edit/:id", (req, res, next) => {
   const post = new Post({
     _id: req.body.id,
     title: req.body.title,
@@ -45,7 +45,7 @@ router.get("",(req, res, next) => {
 
 
 
-router.get("post/:id", (req, res, next) => {
+router.get("/:id", (req, res, next) => {
   Post.findById(req.params.id).then(post=> {
     if(post){
       res.status(200).json(post);
