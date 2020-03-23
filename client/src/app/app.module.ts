@@ -35,7 +35,8 @@ import {
   MatCheckboxModule,
   MatIconModule,
   MatSidenavModule,
-  MatTabsModule
+  MatTabsModule,
+  MatStepperModule,
 } from '@angular/material'; // To import the angular material
 
 
@@ -69,7 +70,8 @@ import {
     MatIconModule,
     MatFormFieldModule,
     AngularMaterialModule,
-  MatInputModule
+    MatInputModule,
+    MatStepperModule
   ],
   providers: [UserService, EnrollService, PostsService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }], //
   bootstrap: [AppComponent]

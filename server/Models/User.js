@@ -8,12 +8,7 @@ let User = new Schema({
         default: null,
         required: true
     },
-    id: {
-        type: Number,
-        trim: true,
-        default: null,
-        require : true
-    },
+   
     email: {
         type: String,
         trim: true,
