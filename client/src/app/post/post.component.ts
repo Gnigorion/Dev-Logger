@@ -14,6 +14,7 @@ export class PostComponent implements OnInit {
   users: any;
   enteredTitle = '';
   enteredContent = '';
+  posts: Post[] = [];
   post: Post;
   private mode = 'post';
   private postId: string;
