@@ -1,51 +1,62 @@
-<h3>User Registration</h3>
+<mat-card>
+<h2>User Registration</h2>
 <form [formGroup]="registerForm" (ngSubmit)="onFormSubmit()">
   <div class="form-group">
-    <label for="Name">Name</label>
-        <input type="text" formControlName="Name" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.Name.errors }" placeholder="Enter Name here"/>
+    <mat-form-field>
+    <mat-label for="Name">Name</mat-label>
+        <input matInput type="text" formControlName="Name" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.Name.errors }" placeholder="Enter Name here"/>
         <div *ngIf="submitted && fval.Name.errors" class="invalid-feedback">
-            <div *ngIf="fval.Name.errors.required"> Name is required</div>
+            <mat-error *ngIf="fval.Name.errors.required"> Name is required</mat-error>
         </div>
+    </mat-form-field>
   </div>
 
 
   <div class="form-group">
-    <label for="email">Email</label>
-    <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" placeholder="Enter email here"/>
+    <mat-form-field>
+    <mat-label for="email">Email</mat-label>
+    <input matInput type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.email.errors }" placeholder="Enter email here"/>
     <div *ngIf="submitted && fval.email.errors" class="invalid-feedback">
-        <div *ngIf="fval.email.errors.required">Email is required</div>
-        <div *ngIf="fval.email.errors.email">Enter valid email address</div>
+        <mat-error *ngIf="fval.email.errors.required">Email is required</mat-error>
+        <mat-error gIf="fval.email.errors.email">Enter valid email address</mat-error>
     </div>
+  </mat-form-field>
   </div>
   <div class="form-group">
-    <label for="phone">Phone</label>
-    <input type="number" formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.phone.errors }" placeholder="Enter Phone here"/>
+    <mat-form-field>
+    <mat-label>Phone</mat-label>
+    <input matInput formControlName="phone" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.phone.errors }" placeholder="Enter Phone here"/>
+    <span matPrefix>+91 &nbsp;</span>
     <div *ngIf="submitted && fval.phone.errors" class="invalid-feedback">
         <div *ngIf="fval.phone.errors.required">Phone is required</div>
     </div>
+  </mat-form-field>
   </div>
 
   <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" placeholder="Enter Password here"/>
+    <mat-form-field>
+    <mat-label for="password">Password</mat-label>
+    <input matInput type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.password.errors }" placeholder="Enter Password here"/>
     <div *ngIf="submitted && fval.password.errors" class="invalid-feedback">
-        <div *ngIf="fval.password.errors.required">Password is required</div>
-        <div *ngIf="fval.password.errors.minlength">Password must be at least 6 characters</div>
+        <mat-error *ngIf="fval.password.errors.required">Password is required</mat-error>
+        <mat-error *ngIf="fval.password.errors.minlength">Password must be at least 6 characters</mat-error>
     </div>
-
+    </mat-form-field>
   </div>
 
   <div class="form-group">
-    <label for="confirm password">Confirm password</label>
-        <input type="password" formControlName="confirm_password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.confirm_password.errors }" placeholder="Enter Confirm Password"/>
+    <mat-form-field>
+    <mat-label for="confirm password">Confirm password</mat-label>
+        <input matInput type="password" formControlName="confirm_password" class="form-control" [ngClass]="{ 'is-invalid': submitted && fval.confirm_password.errors }" placeholder="Enter Confirm Password"/>
+    </mat-form-field>
   </div>
 
   <div class="form-group">
-    <button [disabled]="loading" class="btn btn-primary">
+    <button mat-raised-button color="primary" [disabled]="loading" class="btn btn-primary">
         <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
         Register
     </button>
-    <a routerLink="/login" class="btn btn-link">Login to continue</a>
+    <button mat-raised-button color="primary" routerLink="/login" class="btn btn-link">Login to continue</button>
 </div>
 </form>
-
+</mat-card>
