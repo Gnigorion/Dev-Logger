@@ -11,13 +11,13 @@ export class ReportComponent implements OnInit {
   secondFormGroup: FormGroup;
 
   constructor(private _formBuilder: FormBuilder) { }
-  projects: Project[] = [
-    {
-      value: 'Dev', viewValue: 'Dev-Logger',
-      value: 'Task', viewValue: 'Task Scheduler',
-      value: 'Messaging', viewValue: 'Messanger'
-    }
-  ]
+  // projects: project[] = [
+  //   {
+  //     value: 'Dev', viewValue: 'Dev-Logger',
+  //     value: 'Task', viewValue: 'Task Scheduler',
+  //     value: 'Messaging', viewValue: 'Messanger'
+  //   }
+  // ]
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
