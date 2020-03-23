@@ -1,0 +1,52 @@
+/* body {
+  width: 1000px;
+  height: 280px;
+} */
+
+/* .box { */
+  /* margin: auto; */
+   /* margin-top: 20%;
+  margin-left: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center; */
+  /*width: 320px;
+  height: 220px;
+  position: fixed; */
+/* } */
+
+/* .login-page {
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: #303F9F;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+} */
+
+mat-card {
+  width: 30%;
+  margin: 10% 30%;
+  border-radius: 8px;
+  position: fixed;
+  text-align: center;
+}
+mat-form-field {
+  width: 100%;
+  display: block;
+  margin: auto;
+}
+mat-card-content {
+  margin-top: 20px;
+}
+
+button {
+  width: 100%;
+}
+
+
+

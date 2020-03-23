@@ -7,13 +7,15 @@ import { AuthenticationService } from '../_services';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading = false;
   submitted = false;
   returnUrl: string;
+  hide = true;
 
   constructor(
     private formBuilder: FormBuilder,
