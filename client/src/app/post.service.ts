@@ -65,4 +65,7 @@ getPost(id: string) {
         this.postUpdated.next([...this.posts]);
       });
   }
+  getProject() {
+    return this.http.get('dashboard/project');
+  }
 }

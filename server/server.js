@@ -9,12 +9,15 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 var User = require('./Models/User');
 const Post = require('./Models/post');
+const Project = require('./Models/post');
 
 const mongoose = require('./Utilities/mongooseConfig')();
 
+const routes = require("./Routes/routes");
 const authRoute = require('./Routes/auth');
 const config = require("./Utilities/config").config;
-const postsRoutes = require('./Routes/postsRoutes')
+const postsRoutes = require('./Routes/postsRoutes');
+
 
 app.use(express.static(path.join(__dirname, '/LoginRegDevlogger')));
 
@@ -32,8 +35,10 @@ app.use((err, req, res, next) => {
   });
 });
 
+app.use('/', routes);
 app.use('/auth', authRoute);
-app.use('/dashboard',postsRoutes)
+app.use('/dashboard',postsRoutes);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

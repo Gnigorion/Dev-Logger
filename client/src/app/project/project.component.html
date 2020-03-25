@@ -54,3 +54,17 @@
     You have to set your tasks Manually.
   </p>
 </mat-expansion-panel>
+
+
+<br />
+<hr>
+<p>project works!</p>
+<ul class="quotes" *ngFor="let p of project" >
+  <li class="quote">
+    <span>{{p.name}}</span>
+    <span *ngFor="let pd of p.postdetails">
+      <p>{{pd.title}}</p>
+      <p>{{pd.content}}</p>
+    </span>
+  </li>
+</ul>
