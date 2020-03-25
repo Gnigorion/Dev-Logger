@@ -37,6 +37,8 @@ import {
   MatSidenavModule,
   MatTabsModule,
   MatStepperModule,
+  MatProgressSpinnerModule,
+  MatPaginatorModule
 } from '@angular/material'; // To import the angular material
 
 
@@ -71,7 +73,9 @@ import {
     MatFormFieldModule,
     AngularMaterialModule,
     MatInputModule,
-    MatStepperModule
+    MatStepperModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule
   ],
   providers: [UserService, EnrollService, PostsService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }], //
   bootstrap: [AppComponent]

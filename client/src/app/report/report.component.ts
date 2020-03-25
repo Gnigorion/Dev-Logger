@@ -9,7 +9,7 @@ export class ReportComponent implements OnInit {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-
+  project: [];
   constructor(private _formBuilder: FormBuilder) { }
   // projects: project[] = [
   //   {

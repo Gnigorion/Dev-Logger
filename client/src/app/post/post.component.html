@@ -8,7 +8,9 @@
 
 
 <mat-card class="mat-card">
-  <form (submit)="onSavePost(postForm)" #postForm="ngForm"> <!-- It gives acces to this object form object that angular manages for us -->
+  <mat-spinner *ngIf="isloading"></mat-spinner>
+  <form (submit)="onSavePost(postForm)" #postForm="ngForm" *ngIf="!isloading"> <!-- It gives acces to this object form object that angular manages for us -->
+
     <mat-form-field>
       <mat-label>Title</mat-label>
       <input
@@ -39,5 +41,4 @@
     mat-raised-button
     color=primary
     type="submit">Save Post</button>
-    <button class=info-text mat-raised-button color=primary routerLink="/dashboard">Click</button>
   </form>
