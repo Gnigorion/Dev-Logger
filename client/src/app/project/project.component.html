@@ -4,7 +4,7 @@
       {{p.p_name}}
     </mat-panel-title>
     <mat-panel-description>
-      About Devlogger
+      {{p.content}}
     </mat-panel-description>
   </mat-expansion-panel-header>
   <span *ngFor="let pd of p.postdetails">
@@ -15,7 +15,7 @@
 
 <br />
 <hr>
-<p>project works!</p>
+<!-- <p>project works!</p>
 <ul class="quotes" *ngFor="let p of project" >
   <li class="quote">
     <span>{{p.p_name}}</span>
@@ -24,4 +24,4 @@
       <p>{{pd.content}}</p>
     </span>
   </li>
-</ul>
+</ul> -->

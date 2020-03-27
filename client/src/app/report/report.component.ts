@@ -19,9 +19,10 @@ export class ReportComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
-    this.postService.getProjectDetails()
+    this.postService.getProject()
     .subscribe(data => {
         this.projects = data;
+        console.log(this.projects);
     });
   }
 

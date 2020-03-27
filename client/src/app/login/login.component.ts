@@ -44,14 +44,14 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-     this.authenticationService.login(this.fval.email.value, this.fval.password.value)
-        .subscribe(
+    this.authenticationService.login(this.fval.email.value, this.fval.password.value)
+      .subscribe(
             data => {
               this.router.navigate(['/dashboard']);
             },
             error => {
               this.toastr.error(error.error.message, 'Error');
-                this.loading = false;
+              this.loading = false;
             });
   }
 }

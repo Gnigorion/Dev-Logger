@@ -25,15 +25,15 @@ export class RegisterComponent implements OnInit {
    this.registerForm = this.formBuilder.group({
       Name: ['', Validators.required],
       phone: ['', Validators.required],
-      email: ['', [Validators.required,Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirm_password: ['',Validators.required],
+      email: ['', [ Validators.required , Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$')]],
+      password: ['', Validators.required , Validators.minLength(6), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+      confirm_password: ['', Validators.required],
   });
   }
 
   get fval() { return this.registerForm.controls; }
 
-  onFormSubmit(){
+  onFormSubmit() {
     this.submitted = true;
     // return for here if form is invalid
     if (this.registerForm.invalid) {
@@ -41,16 +41,15 @@ export class RegisterComponent implements OnInit {
     }
     this.loading = true;
     this.userService.register(this.registerForm.value).subscribe(
-      (data)=>{
+      (data) => {
         alert('User Registered successfully!!');
         this.router.navigate(['/login']);
      },
-      (error)=>{
+      (error) => {
         this.toastr.error(error.error.message, 'Error');
         this.loading = false;
       }
-    )
-
-  }
+    );
+    }
 
 }
