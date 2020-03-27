@@ -5,8 +5,8 @@
       <mat-form-field>
         <mat-label>Project Title:</mat-label>
           <mat-select>
-            <mat-option *ngFor="let project of projects" [value]="project.value">
-              {{project.viewValue}}
+            <mat-option *ngFor="let project of projects" [value]="project.p_name">
+              {{project.p_name}}
             </mat-option>
           </mat-select>
 

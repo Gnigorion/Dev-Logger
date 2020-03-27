@@ -10,3 +10,6 @@ textarea{
 button{
   margin-left: 10px;
 }
+mat-spinner{
+  margin: auto;
+}

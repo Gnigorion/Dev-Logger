@@ -3,69 +3,67 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   private posts: Post[] = [];
-  private postUpdated = new Subject<Post[]>();
-  constructor(private http: HttpClient) { }
+  private postUpdated = new Subject<{ posts: Post[], postCount: number }>();
+  constructor(private http: HttpClient, private router: Router) { }
 
-  getPosts() {
-    this.http.get<{ message: string, posts: any }>('dashboard')
+  getPosts(postsPerPage: number, currentPage: number) {
+    const queryParams = `?pagesize=${postsPerPage}&page=${currentPage}`;
+    this.http.get<{ message: string, posts: any, maxPosts: number }>('dashboard' + queryParams)
       .pipe(map((postData) => {
-        return postData.posts.map(post => {
-          return {
-            title: post.title,
-            content: post.content,
-            id: post._id
-          };
-        });
+        return {
+          posts: postData.posts.map(post => {
+            return {
+              title: post.title,
+              content: post.content,
+              id: post._id,
+              p_name: post.p_name
+            };
+          }), maxPosts: postData.maxPosts
+        };
       }))
-      .subscribe((transformedPosts) => {
-        this.posts = transformedPosts;
-        this.postUpdated.next([...this.posts]);
+      .subscribe((transformedPostsData) => {
+        this.posts = transformedPostsData.posts,
+        this.postUpdated.next({ posts: [...this.posts], postCount: transformedPostsData.maxPosts});
       });
-    }
+  }
   getPostUpdateListener() {
     return this.postUpdated.asObservable();
   }
-getPost(id: string) {
-  return this.http.get<{_id: string, title: string, content: string}>('dashboard/' + id);
-}
+  getPost(id: string) {
+    return this.http.get<{ _id: string, title: string, content: string, p_name: string }>('dashboard/' + id);
+  }
 
-  addPost(title: string, content: string) {
-    const post: Post = { id: null, title: title, content: content };
+  // tslint:disable-next-line: variable-name
+  addPost(title: string, content: string, p_name: string) {
+    const post: Post = { id: null, title, content, p_name };
     this.http.post<{ message: string, postId: string }>('dashboard/post', post)
       .subscribe(responseData => {
-        const id = responseData.postId;
-        post.id = id;
-        this.posts.push(post);
-        this.postUpdated.next([...this.posts]);
+        this.router.navigate(['/dashboard']);
+        console.log(post);
       });
   }
 
-  updatePost(id: string, title: string, content: string) {
-    const post: Post = { id: id, title: title, content: content };
+  // tslint:disable-next-line: variable-name
+  updatePost(id: string, title: string, content: string, p_name: string) {
+    const post: Post = { id, title, content, p_name };
     this.http
-    .put('dashboard/edit/' + id, post)
-    .subscribe(response => {
-      const updatedPosts = [...this.posts];
-      const oldPostIndex = updatedPosts.findIndex(p => p.id === post.id);
-      updatedPosts[oldPostIndex] = post;
-      console.log(response);
-      this.posts  = updatedPosts;
-      this.postUpdated.next([...this.posts]);
-    });
+      .put('dashboard/edit/' + id, post)
+      .subscribe(response => {
+        this.router.navigate(['/dashboard']);
+      });
   }
   deletePost(postId: string) {
-    this.http.delete('dashboard/' + postId)
-      .subscribe(() => {
-        const updatedPosts = this.posts.filter(post => post.id !== postId);
-        this.posts = updatedPosts;
-        this.postUpdated.next([...this.posts]);
-      });
+    return this.http.delete('dashboard/' + postId);
   }
   getProject() {
     return this.http.get('dashboard/project');
+  }
+  getProjectDetails() {
+    return this.http.get('dashboard/post');
   }
 }

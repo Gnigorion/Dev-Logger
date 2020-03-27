@@ -1,11 +1,7 @@
 var express = require('express'),
     router = express.Router();
-    mongoose = require('mongoose');
-// var MongoClient = require('mongodb').MongoClient;
-// var url = "mongodb://localhost:27017/";
-const db = require('../Utilities/mongooseConfig')
-var Schema = mongoose.Schema;
-var Project = require('../Models/project')
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://localhost:27017/";
 
 
 router.get('/', function(req,res,next){
@@ -13,53 +9,34 @@ router.get('/', function(req,res,next){
 });
 
 
-/* Get Project Data */
-// router.get('/dashboard/project',function(req,res,next){
-//   db.onnce('open',function(){
-//     console.log('db connect');
-//     db.collection('projects').aggregate([
-//       {$lookup:
-//         {
-//           from: 'Post',
-//           localField: 'name',
-//           foreignField: 'name',
-//           as: 'postdetails'
-//         }
-//       }
-//     ]).toArray(function(err, result) {
-//       console.log(JSON.stringify(result));
-//       res.send(result)
-//     });
-//     db.close();
-//   });
-// });
+router.get('/dashboard/project',function(req,res,next){
+  var resultArray = [];
+  MongoClient.connect(url, function(err,db) {
+    if (err) throw err;
+    var dbo = db.db('DevLogger');
+    dbo.collection("projects").aggregate([
+      {$lookup:
+        {
+          from: 'posts',
+          localField: 'p_name',
+          foreignField: 'p_name',
+          as: 'postdetails'
+        }
+      }
+    ]).toArray(function(err, result) {
+      console.log(result);
+      res.send(result)
+    });
+    db.close();
+  });
+});
 
-// router.get("dashboard/project", function(req, res) {
-//   console.log('hello')
-//   Project.findOne({_id: req.params.id})
-//   .then(function(result) {
-//     console.log(result);
-//     console.log('hello')
-//   })
-//   .catch(function(err) {
-//     res.json(err);
-//   });
-// });
-
-// router.get('/dashboard/project',function(req,res,next){
+// router.get('/dashboard/posts',function(req,res,next){
+//   var resultArray = [];
 //   MongoClient.connect(url, function(err,db) {
 //     if (err) throw err;
-//     var dbo = db.db('mydb');
-//     dbo.collection("employees").aggregate([
-//       {$lookup:
-//         {
-//           from: 'posts',
-//           localField: 'p_name',
-//           foreignField: 'p_name',
-//           as: 'postdetails'
-//         }
-//       }
-//     ]).toArray(function(err, result) {
+//     var dbo = db.db('DevLogger');
+//     dbo.collection("projects").find().toArray(function(err, result) {
 //       console.log(result);
 //       res.send(result)
 //     });
@@ -67,26 +44,38 @@ router.get('/', function(req,res,next){
 //   });
 // });
 
-router.get("dashboard/project", function(req,res) {
-  Project.find()
-  .then(function(dbProducts) {
-    res.json(dbProducts);
-  })
-  .catch(function(err) {
-    res.json(err);
-  })
-});
+// router.get('/dashboard/new',function(req,res,next){
+//   var resultArray = [];
+//   MongoClient.connect(url, function(err,db) {
+//     if (err) throw err;
+//     var dbo = db.db('DevLogger');
+//     dbo.collection("posts").find().toArray(function(err, result) {
+//       console.log(result);
+//       console.log(result[0])
+//       console.log(result[0].name)
+//       res.send(result)
+//     });
+//     db.close();
+//   });
+// });
 
-router.post("/project", function(req, res) {
-  Project.create(req.body)
-    .then(function(dbProduct) {
-      // If we were able to successfully create a Product, send it back to the client
-      res.json(dbProduct);
-    })
-    .catch(function(err) {
-      // If an error occurred, send it to the client
-      res.json(err);
-    });
-});
+// router.post('/enroll',function(req,res,next){
+//   console.log(req.body);
+//   res.status(200).send({'message': 'Data Received'});
+//   var data = {
+//     name : req.body.name,
+//     password: req.body.password
+//   };
+//   console.log(data);
+//   MongoClient.connect(url, function(err,db) {
+//     if (err) throw err;
+//     var dbo = db.db('DevLogger');
+//     dbo.collection("user").insertOne(data, function(err,res){
+//       if (err) throw err;
+//       console.log("Collection created Documents inserted.." + res.insertedCount);
+//       db.close();
+//     });
+//   });
+// });
 
 module.exports = router;

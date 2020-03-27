@@ -6,9 +6,10 @@
 </ul>
 <h2>post works!</h2> -->
 
-
 <mat-card class="mat-card">
-  <form (submit)="onSavePost(postForm)" #postForm="ngForm"> <!-- It gives acces to this object form object that angular manages for us -->
+  <mat-spinner *ngIf="isloading"></mat-spinner>
+  <form (submit)="onSavePost(postForm)" #postForm="ngForm" *ngIf="!isloading"> <!-- It gives acces to this object form object that angular manages for us -->
+
     <mat-form-field>
       <mat-label>Title</mat-label>
       <input
@@ -35,9 +36,24 @@
       <mat-error *ngIf="content.invalid">Content Missing</mat-error>
     </textarea>
     </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input type="text"
+            name="p_name"
+             placeholder="Pick one"
+             aria-label="Number"
+             matInput
+             [matAutocomplete]="auto"
+             ngModel>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of p_name" [value]="option.p_name" >
+          {{option.p_name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
     <button
     mat-raised-button
     color=primary
     type="submit">Save Post</button>
-    <button class=info-text mat-raised-button color=primary routerLink="/dashboard">View Post</button>
   </form>
+

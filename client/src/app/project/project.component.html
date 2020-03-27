@@ -1,67 +1,24 @@
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
+<mat-expansion-panel *ngFor="let p of project">
+  <mat-expansion-panel-header >
     <mat-panel-title>
-      DevLogger Project
+      {{p.p_name}}
     </mat-panel-title>
     <mat-panel-description>
       About Devlogger
     </mat-panel-description>
   </mat-expansion-panel-header>
-  <p>This Project is build on MEAN Stack(Mongodb, Express JS, Angular JS, Node JS).</p>
+  <span *ngFor="let pd of p.postdetails">
+    <p>{{pd.title}}</p>
+    <p>{{pd.content}}</p>
+  </span>
 </mat-expansion-panel>
-
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      News Application
-    </mat-panel-title>
-    <mat-panel-description>
-      About News App
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <p>This Project is build on MEAN Stack(Mongodb, Express JS, Angular JS, Node JS).
-    Deals with the news across world.
-    Multiple News platformm are integrated in one place for you.
-  </p>
-</mat-expansion-panel>
-
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      The Messanger Application
-    </mat-panel-title>
-    <mat-panel-description>
-      About Messanger Application
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <p>This Project is build on MEAN Stack(Mongodb, Express JS, Angular JS, Node JS).
-    Easy Platform to communicate with your friends.
-    Multiple Friends Group is supported in this project.
-  </p>
-</mat-expansion-panel>
-
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Task Scheduler
-    </mat-panel-title>
-    <mat-panel-description>
-      About Task Scheduler Application
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <p>This Project is build on MEAN Stack(Mongodb, Express JS, Angular JS, Node JS).
-    It will notify your Scheduled tasks.
-    You have to set your tasks Manually.
-  </p>
-</mat-expansion-panel>
-
 
 <br />
 <hr>
 <p>project works!</p>
 <ul class="quotes" *ngFor="let p of project" >
   <li class="quote">
-    <span>{{p.name}}</span>
+    <span>{{p.p_name}}</span>
     <span *ngFor="let pd of p.postdetails">
       <p>{{pd.title}}</p>
       <p>{{pd.content}}</p>

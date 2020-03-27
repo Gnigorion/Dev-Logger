@@ -37,8 +37,10 @@ import {
   MatSidenavModule,
   MatTabsModule,
   MatStepperModule,
+  MatProgressSpinnerModule,
+  MatPaginatorModule,
+  MatAutocompleteModule
 } from '@angular/material'; // To import the angular material
-
 
 @NgModule({
   declarations: [
@@ -50,7 +52,7 @@ import {
     PostComponent,
     ProjectComponent,
     ReportComponent,
-    ShowPostComponent
+    ShowPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,10 @@ import {
     MatFormFieldModule,
     AngularMaterialModule,
     MatInputModule,
-    MatStepperModule
+    MatStepperModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatAutocompleteModule
   ],
   providers: [UserService, EnrollService, PostsService, {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }], //
   bootstrap: [AppComponent]

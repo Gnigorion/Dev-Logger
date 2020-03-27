@@ -1,5 +1,6 @@
 const express = require("express");
 const Post = require('../Models/post');
+const Project = require('../Models/project');
 const router = express.Router();
 
 
@@ -7,7 +8,8 @@ const router = express.Router();
 router.post("/post",(req, res, next) => {
   const post = new Post({
     title: req.body.title,
-    content: req.body.content
+    content: req.body.content,
+    p_name: req.body.p_name
   });
   post.save().then(createdPost => {
     res.status(201).json({
@@ -19,11 +21,14 @@ router.post("/post",(req, res, next) => {
 
 
 
+
+
 router.put("/edit/:id", (req, res, next) => {
   const post = new Post({
     _id: req.body.id,
     title: req.body.title,
-    content: req.body.content
+    content: req.body.content,
+    p_name: req.body.p_name
   });
   Post.updateOne({_id: req.params.id}, post)
   .then(result => {
@@ -34,12 +39,35 @@ router.put("/edit/:id", (req, res, next) => {
 
 
 router.get("",(req, res, next) => {
-  Post.find()
-  .then(documents => {
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const postQuery = Post.find();
+  let fetchedPost;
+  if(pageSize && currentPage){
+    postQuery
+    .skip(pageSize * (currentPage - 1))
+    .limit(pageSize)
+  }
+  postQuery.then(documents => {
+    fetchedPost = documents;
+    return Post.count();
+  }).then(count => {
       res.status(200).json({
       message: 'Posts fetch Successfully',
-      posts: documents
-  })
+      posts: fetchedPost,
+      maxPosts: count
+  });
+  });
+});
+
+
+router.get('/post',(req, res) => {
+  Project.find((err, docs) => {
+    if(!err) {
+      res.send(docs);
+    }else{
+      console.log("Error is retriving employees " + JSON.stringify(err, undefined, 2));
+    }
   });
 });
 
