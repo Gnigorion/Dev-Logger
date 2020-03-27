@@ -15,7 +15,7 @@ async function main() {
 
  let info = await transporter.sendMail({
  from: "devlogger.robo@gmail.com",
- to: "anjalipoddar.doc@gmail.com",
+ to: "surajkumar.devp@gmail.com",
  subject: "REPORT ",
  text: "Hello ,This is your project report",
  html: "<b>Hello </b>"

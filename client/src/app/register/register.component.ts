@@ -25,8 +25,8 @@ export class RegisterComponent implements OnInit {
    this.registerForm = this.formBuilder.group({
       Name: ['', Validators.required],
       phone: ['', Validators.required],
-      email: ['', [ Validators.required , Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}$')]],
-      password: ['', Validators.required , Validators.minLength(6), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+      email: ['', [ Validators.required ]],
+      password: ['', [Validators.required , Validators.minLength(6), Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       confirm_password: ['', Validators.required],
   });
   }
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
     this.loading = true;
     this.userService.register(this.registerForm.value).subscribe(
       (data) => {
-        alert('User Registered successfully!!');
+        //alert('User Registered successfully!!');
         this.router.navigate(['/login']);
      },
       (error) => {

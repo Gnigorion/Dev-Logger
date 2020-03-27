@@ -1,3 +1,4 @@
+<form [formGroup] = "uploadForm" (ngSubmit)="onSubmit()">
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
@@ -26,7 +27,7 @@
       <mat-form-field>
         <mat-label>Address</mat-label>
         <input matInput formControlName="secondCtrl" placeholder="Enter your mail Address :"
-               required>
+        (change)="onFileSelect($event)"  required>
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -44,3 +45,4 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+</form>
